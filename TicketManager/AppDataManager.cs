@@ -20,6 +20,10 @@ namespace TicketManager
 
         public List<ProjectInfo> Projects => AppData.Projects;
 
+        public List<TicketStatus> TicketStatusList => AppData.TicketStatuses;
+
+        public List<PlayerInfo> PlayerList => AppData.Players;
+
         private AppData Load() 
         {
             return new AppData();
@@ -34,8 +38,8 @@ namespace TicketManager
 
         public int PublicTicketId()
         {
-            int id = AppData.TicketId;
-            AppData.TicketId++;
+            int id = AppData.NextTicketId;
+            AppData.NextTicketId++;
             return id;
         }
     }

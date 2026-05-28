@@ -12,9 +12,28 @@
             <Label Content="タイトル" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBox Height="28" TextWrapping="Wrap" Text="{Binding TicketInfo.Title, Mode=TwoWay}" d:Text="チケットのタイトル" VerticalAlignment="Top" Margin="51,0,0,0"/>
         </Grid>
-        <Grid Margin="10,0,10,10" Height="108" VerticalAlignment="Bottom">
-            <Button Content="作成" Click="OKButton_Clicked" HorizontalAlignment="Left" Height="60" Margin="380,0,0,0" VerticalAlignment="Center" Width="109"/>
+        <Grid Height="31" Margin="33,46,610,0" VerticalAlignment="Top">
+            <Label Content="親チケット" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox Height="28" TextWrapping="Wrap" Text="{Binding ParentTicketId, Mode=TwoWay}" d:Text="0" VerticalAlignment="Top" Margin="61,0,0,0"/>
         </Grid>
+        <Grid Margin="5,0,15,10" Height="80" VerticalAlignment="Bottom">
+            <Button Content="作成" Click="OKButton_Clicked" HorizontalAlignment="Left" Height="60" Margin="661,10,0,0" VerticalAlignment="Top" Width="109"/>
+        </Grid>
+        <Grid Height="138" Margin="15,108,15,0" VerticalAlignment="Top">
+            <Label Content="概要" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.561,0.301"/>
+            <TextBox TextWrapping="Wrap" Text="{Binding TicketInfo.Abstract, Mode=TwoWay}" d:Text="チケットの概要" Margin="10,41,10,10"/>
+        </Grid>
+        <ComboBox HorizontalAlignment="Left" Margin="28,251,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TicketTypeList}" SelectedItem="{Binding TicketType, Mode=TwoWay}"/>
+        <Grid HorizontalAlignment="Left" Height="27" Margin="165,249,0,0" VerticalAlignment="Top" Width="270">
+            <Label Content="開始日" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <DatePicker Margin="60,1,10,0" VerticalAlignment="Top" SelectedDate="{Binding TicketInfo.StartDate, Mode=TwoWay}"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="27" Margin="440,251,0,0" VerticalAlignment="Top" Width="270">
+            <Label Content="期限日" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <DatePicker Margin="60,1,10,0" VerticalAlignment="Top" SelectedDate="{Binding TicketInfo.LimitDate, Mode=TwoWay}"/>
+        </Grid>
+        <ComboBox HorizontalAlignment="Left" Margin="28,278,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TicketStatusList}" DisplayMemberPath="Label" SelectedItem="{Binding SelectedTicketStatus, Mode=TwoWay}"/>
+        <ComboBox HorizontalAlignment="Left" Margin="165,278,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding PlayerList}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedPlayer, Mode=TwoWay}"/>
 
     </Grid>
 </Window>

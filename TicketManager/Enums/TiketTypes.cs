@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TicketManager.Enums
 {
-    public enum TiketTypes
+    public enum TicketTypes
     {
         None,
         Epic,
