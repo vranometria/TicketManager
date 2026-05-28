@@ -20,6 +20,7 @@
                         </Style>
                     </MenuItem.ItemContainerStyle>
                 </MenuItem>
+                <MenuItem Header="チケットを作成" Click="NewTicketMenuItem_Click"/>
             </MenuItem>
         </Menu>
 

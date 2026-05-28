@@ -31,5 +31,12 @@ namespace TicketManager
             AppData.Projects.Add(projectInfo);
             AppState.RaiseProjectListChanged();
         }
+
+        public int PublicTicketId()
+        {
+            int id = AppData.TicketId;
+            AppData.TicketId++;
+            return id;
+        }
     }
 }

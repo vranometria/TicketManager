@@ -1,0 +1,20 @@
+﻿<Window x:Class="TicketManager.SubWindows.TicketEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TicketManager.SubWindows"
+        mc:Ignorable="d"
+        Title="{Binding WindowTitle}" Height="450" Width="800">
+    <Grid>
+        <Label Content="{Binding TicketId}" d:Content="#1000" HorizontalAlignment="Left" Height="31" Margin="33,10,0,0" VerticalAlignment="Top" Width="52"/>
+        <Grid Height="31" Margin="90,10,10,0" VerticalAlignment="Top">
+            <Label Content="タイトル" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox Height="28" TextWrapping="Wrap" Text="{Binding TicketInfo.Title, Mode=TwoWay}" d:Text="チケットのタイトル" VerticalAlignment="Top" Margin="51,0,0,0"/>
+        </Grid>
+        <Grid Margin="10,0,10,10" Height="108" VerticalAlignment="Bottom">
+            <Button Content="作成" Click="OKButton_Clicked" HorizontalAlignment="Left" Height="60" Margin="380,0,0,0" VerticalAlignment="Center" Width="109"/>
+        </Grid>
+
+    </Grid>
+</Window>

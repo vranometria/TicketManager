@@ -10,6 +10,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TicketManager.DataModels;
+using TicketManager.SubWindows;
 using TicketManager.ViewModels;
 
 namespace TicketManager
@@ -74,6 +75,12 @@ namespace TicketManager
             {
                 ViewModel.ProjectInfo = projectInfo;
             }
+        }
+
+        private void NewTicketMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TicketEditWindow window = new();
+            window.ShowDialog();
         }
     }
 }

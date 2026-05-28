@@ -7,5 +7,7 @@ namespace TicketManager.DataModels
     public class AppData
     {
         public List<ProjectInfo> Projects { get; set; } = [];
+
+        public int TicketId { get; set; } = 0;
     }
 }
