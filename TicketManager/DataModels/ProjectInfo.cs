@@ -21,6 +21,11 @@ namespace TicketManager.DataModels
         public string Name { get; set; }
 
         /// <summary>
+        /// 作業者情報
+        /// </summary>
+        public List<PlayerInfo> Players { get; set; } = [];
+
+        /// <summary>
         /// 全チケット
         /// </summary>
         public Dictionary<int, TicketInfo> Tickets { get; set; } = [];

@@ -6,7 +6,7 @@ namespace TicketManager.DataModels
 {
     public class AppData
     {
-        public List<ProjectInfo> Projects { get; set; } = [];
+        public Dictionary<string, ProjectInfo> ProjectsDictionary { get; set; } = [];
 
         /// <summary>
         /// 次に発行するチケットID
@@ -19,29 +19,18 @@ namespace TicketManager.DataModels
         public Dictionary<int, TicketRelation> TicketRelations { get; set; } = [];
 
         /// <summary>
+        /// 前回開いていたプロジェクトID
+        /// </summary>
+        public string PreviousProjectId { get; set; } = string.Empty;
+
+        /// <summary>
         /// チケットの状態
         /// </summary>
 
-        public List<TicketStatus> TicketStatuses { get; internal set; } = [];
-
-        /// <summary>
-        /// 作業者情報
-        /// </summary>
-        public List<PlayerInfo> Players { get; internal set; } = [];
-
-        public AppData()
-        {
-            TicketStatuses = [
-                new TicketStatus()                {
-                    Label = "未着手",
-                },
-                new TicketStatus()                {
-                    Label = "進行中",
-                },
-                new TicketStatus()                {
-                    Label = "完了",
-                }
-                ];
-        }
+        public List<TicketStatus> TicketStatuses { get; internal set; } = [
+                new TicketStatus(){ Label = "未着手" },
+                new TicketStatus(){ Label = "進行中",},
+                new TicketStatus(){ Label = "完了", },
+            ];
     }
 }

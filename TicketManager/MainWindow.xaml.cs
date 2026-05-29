@@ -24,6 +24,8 @@ namespace TicketManager
 
         private AppDataManager AppDataManager { get; set; } = AppDataManager.Instance;
 
+        private AppState AppState => AppState.Instance;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -32,7 +34,8 @@ namespace TicketManager
 
         private ProjectInfo? CreateNewProject()
         {
-            string projectName = Interaction.InputBox("プロジェクト名を入力してください", "プロジェクト作成", "DefaultProject", -1, -1);
+            int count = AppDataManager.Projects.Count;
+            string projectName = Interaction.InputBox("プロジェクト名を入力してください", "プロジェクト作成", $"DefaultProject{count + 1}", -1, -1);
             if (!string.IsNullOrEmpty(projectName))
             {
                 return new ProjectInfo(projectName);
@@ -42,12 +45,12 @@ namespace TicketManager
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (ViewModel.ProjectInfo == ProjectInfo.Empty)
+            ProjectInfo projectInfo = AppDataManager.PreviousProject;
+            if (projectInfo == ProjectInfo.Empty)
             {
                 var newProject = CreateNewProject();
                 if (newProject != null)
                 {
-                    ViewModel.ProjectInfo = newProject;
                     AppDataManager.AddProject(newProject);
                 }
                 else
@@ -55,6 +58,8 @@ namespace TicketManager
                     Close();
                 }
             }
+
+            AppState.ChangeProject(projectInfo.Id);
         }
 
         private void NewProjectMenuItem_Click(object sender, RoutedEventArgs e)
@@ -74,13 +79,34 @@ namespace TicketManager
             if (projectInfo != null)
             {
                 ViewModel.ProjectInfo = projectInfo;
+                AppDataManager.AddProject(projectInfo);
             }
         }
 
         private void NewTicketMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            ProjectInfo? projectInfo = AppState.CurrentProject;
+            if(projectInfo == null) { return; }
+
             TicketEditWindow window = new();
+            if (window.ShowDialog() == true)
+            {
+                AppDataManager.AddTickets(projectInfo.Id, window.Tickets);
+            }
+        }
+
+        private void ProjectSettingsMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if(AppState.CurrentProject == ProjectInfo.Empty) {
+                return;
+            }
+            ProjectConfigWindow window = new();
             window.ShowDialog();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            AppDataManager.Save();
         }
     }
 }

@@ -23,7 +23,6 @@ namespace TicketManager.SubWindows
 
         public List<TicketInfo> Tickets = [];
 
-
         public TicketEditWindow() : this(new TicketEditViewModel()) {}
 
         public TicketEditWindow(TicketEditViewModel viewModel)
