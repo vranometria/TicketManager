@@ -4,12 +4,8 @@ using System.Text;
 
 namespace TicketManager.DataModels
 {
-    public class ProjectInfo
+    public class ProjectInfo(string name)
     {
-        private static readonly ProjectInfo EmptyInstance = new ProjectInfo(string.Empty);
-
-        public static ProjectInfo Empty => EmptyInstance;
-
         /// <summary>
         /// プロジェクト識別子
         /// </summary>
@@ -18,7 +14,7 @@ namespace TicketManager.DataModels
         /// <summary>
         /// プロジェクト名
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = name;
 
         /// <summary>
         /// 作業者情報
@@ -30,10 +26,9 @@ namespace TicketManager.DataModels
         /// </summary>
         public Dictionary<int, TicketInfo> Tickets { get; set; } = [];
 
-
-        public ProjectInfo(string name)
-        { 
-            Name = name;
-        }
+        /// <summary>
+        /// マイルストーン
+        /// </summary>
+        public List<MileStoneInfo> Milestones { get; set; } = [];
     }
 }

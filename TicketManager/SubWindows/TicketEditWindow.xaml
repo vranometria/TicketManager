@@ -34,6 +34,7 @@
         </Grid>
         <ComboBox HorizontalAlignment="Left" Margin="28,278,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TicketStatusList}" DisplayMemberPath="Label" SelectedItem="{Binding SelectedTicketStatus, Mode=TwoWay}"/>
         <ComboBox HorizontalAlignment="Left" Margin="165,278,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding PlayerList}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedPlayer, Mode=TwoWay}"/>
+        <ComboBox HorizontalAlignment="Left" Margin="300,278,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding MilestoneList}" DisplayMemberPath="Label" SelectedItem="{Binding SelectedMilestone, Mode=TwoWay}"/>
 
     </Grid>
 </Window>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using TicketManager.DataModels;
+using TicketManager.ViewModels;
 
 namespace TicketManager
 {
@@ -14,13 +15,17 @@ namespace TicketManager
 
         private AppDataManager AppDataManager => AppDataManager.Instance;
 
-        public ProjectInfo CurrentProject { get; set; } = ProjectInfo.Empty;
+        public ProjectInfo CurrentProject { get; set; } = Empties.EmptyProject;
 
         public event EventHandler<EventArgs>? ProjectListChanged;
 
         public event EventHandler<EventArgs>? ProjectChanged;
 
         public event EventHandler<EventArgs>? PlayerListChanged;
+
+        public event EventHandler<EventArgs>? TicketStatusListChanged;
+
+        public event EventHandler<EventArgs>? MilestoneListChanged;
 
         public void ChangeProject(string projectId)
         {
@@ -45,6 +50,16 @@ namespace TicketManager
         public void RaisePlayerListChanged()
         {
             PlayerListChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void RaiseTicketStatusListChanged()
+        {
+            TicketStatusListChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void RaiseMilestoneListChanged()
+        {
+            MilestoneListChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

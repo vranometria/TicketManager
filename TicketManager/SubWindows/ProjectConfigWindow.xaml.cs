@@ -50,5 +50,17 @@ namespace TicketManager.SubWindows
         {
             DialogResult = true;
         }
+
+        private void RegisterTicketStatusButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            AppDataManager.AddTicketStatus(ViewModel.EdittingTicketStatus);
+            ViewModel.EdittingTicketStatus = new TicketStatus();
+        }
+
+        private void RegisterMilestoneButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            AppDataManager.AddMilestone(ViewModel.EdittingMilestone);
+            ViewModel.EdittingMilestone = new MileStoneInfo();
+        }
     }
 }

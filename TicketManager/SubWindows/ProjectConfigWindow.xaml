@@ -8,7 +8,7 @@
         Title="設定" Height="494" Width="432">
     <Grid Margin="0,0,0,-6">
         <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TabControl Margin="10,41,10,90">
+        <TabControl Margin="10,41,10,71">
             <TabItem Header="プレイヤー">
                 <Grid>
                     <ListBox Margin="10,10,91,74" d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding Players}" SelectedItem="{Binding EdittingdPlayer, Mode=TwoWay}" DisplayMemberPath="Name"/>
@@ -24,12 +24,40 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="設定">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="チケットステータス">
+                <Grid>
+                    <ListBox HorizontalAlignment="Left" Height="242" Margin="10,10,0,0" VerticalAlignment="Top" Width="231" ItemsSource="{Binding TicketStatuses}" DisplayMemberPath="Label" SelectedItem="{Binding EdittingTicketStatus, Mode=TwoWay}"/>
+                    <Grid HorizontalAlignment="Left" Height="58" Margin="10,257,0,0" VerticalAlignment="Top" Width="307">
+                        <Label Content="状態名" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBox HorizontalAlignment="Left" Margin="0,29,0,0" TextWrapping="Wrap" Text="{Binding EdittingTicketStatus.Label, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="146"/>
+                        <CheckBox Content="完了と判定する" HorizontalAlignment="Left" Margin="151,29,0,0" VerticalAlignment="Top" IsChecked="{Binding EdittingTicketStatus.IsCompleted, Mode=TwoWay}"/>
+                        <Button Content="+" Background="White" Margin="0,0,10,10" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="23" Click="RegisterTicketStatusButton_Clicked"/>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="マイルストーン">
+                <Grid>
+                    <ListBox HorizontalAlignment="Left" Height="242" Margin="10,10,0,0" VerticalAlignment="Top" Width="231" ItemsSource="{Binding Milestones}" DisplayMemberPath="Label" SelectedItem="{Binding EdittingMilestone, Mode=TwoWay}"/>
+                    <Grid HorizontalAlignment="Center" Height="77" Margin="0,257,0,0" VerticalAlignment="Top" Width="386">
+                        <Label Content="表示名" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBox HorizontalAlignment="Left" Margin="0,29,0,0" TextWrapping="Wrap" Text="{Binding EdittingMilestone.Label, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="146"/>
+                        <Button Content="+" Background="White" Margin="0,0,10,10" Height="54" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="23" Click="RegisterMilestoneButton_Clicked"/>
+                        <Grid HorizontalAlignment="Left" Height="34" Margin="151,3,0,0" VerticalAlignment="Top" Width="197">
+                            <Label Content="開始日" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <DatePicker Height="32" Margin="51,-3,0,0" VerticalAlignment="Top" SelectedDate="{Binding EdittingMilestone.StartDate, Mode=TwoWay}"/>
+                        </Grid>
+                        <Grid HorizontalAlignment="Left" Height="34" Margin="151,37,0,0" VerticalAlignment="Top" Width="197">
+                            <Label Content="終了日" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <DatePicker Height="32" Margin="51,0,0,0" VerticalAlignment="Center" SelectedDate="{Binding EdittingMilestone.EndDate, Mode=TwoWay}"/>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
             </TabItem>
         </TabControl>
-        <Grid Margin="10,0,10,15" Height="70" VerticalAlignment="Bottom">
-            <Button Content="Close" Background="white" Height="50" Margin="314,0,10,0" VerticalAlignment="Center" Click="CloseButton_Clicked"/>
+        <Grid Margin="10,418,10,0" Height="51" VerticalAlignment="Top">
+            <Button Content="Close" Background="white" Margin="314,10,10,10" Click="CloseButton_Clicked"/>
         </Grid>
     </Grid>
 </Window>

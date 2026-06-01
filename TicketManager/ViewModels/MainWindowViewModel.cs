@@ -8,11 +8,8 @@ namespace TicketManager.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
-        private static AppDataManager AppDataManager => AppDataManager.Instance;
-        private static AppState AppState => AppState.Instance;
 
-
-        public ProjectInfo ProjectInfo { get => field; set { field = value; OnPropertyChanged(); } } = ProjectInfo.Empty;
+        public ProjectInfo ProjectInfo { get => field; set { field = value; OnPropertyChanged(); } } = Empties.EmptyProject;
 
         public ObservableCollection<ProjectInfo> Projects { get; set; } = [];
 

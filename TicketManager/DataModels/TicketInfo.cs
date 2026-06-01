@@ -49,6 +49,11 @@ namespace TicketManager.DataModels
         /// </summary>
         public string AssigneeId { get; set; } = string.Empty;
 
+        /// <summary>
+        /// 属しているマイルストーンのID
+        /// </summary>
+        public string MilestoneId { get; set; }　= string.Empty;
+
         public TicketInfo() 
         {
             Id = AppDataManager.PublicTicketId();
