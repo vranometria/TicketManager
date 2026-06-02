@@ -19,11 +19,20 @@ namespace TicketManager.SubWindows
     /// </summary>
     public partial class TicketEditWindow : Window
     {
-        private TicketEditViewModel ViewModel;
+        private static AppState AppState => AppState.Instance;
 
-        public List<TicketInfo> Tickets = [];
+        private readonly TicketEditViewModel ViewModel;
 
-        public TicketEditWindow() : this(new TicketEditViewModel()) {}
+        public int? ParentTicketId => ViewModel.ParentTicketId;
+
+        /// <summary>
+        ///  新規チケットかチケット編集か
+        /// </summary>
+        public bool IsNewTicket = false;
+
+        public TicketEditWindow(TicketInfo ticketInfo) : this(new TicketEditViewModel(ticketInfo)) { IsNewTicket = false; }
+
+        public TicketEditWindow() : this(new TicketEditViewModel()) { IsNewTicket = true; }
 
         public TicketEditWindow(TicketEditViewModel viewModel)
         {
@@ -31,11 +40,31 @@ namespace TicketManager.SubWindows
             ViewModel = viewModel;
             DataContext = ViewModel;
         }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (IsNewTicket)
+            {
+                ChildTicketsGrid.Visibility = Visibility.Collapsed;
+            }
+        }
 
         private void OKButton_Clicked(object sender, RoutedEventArgs e)
         {
-            Tickets.Add(ViewModel.TicketInfo);
+            AppState.CurrentProject.AddTicket(ParentTicketId, ViewModel.TicketInfo);
             DialogResult = true;
+        }
+
+        private void NewChildTicketButton_Click(object sender, RoutedEventArgs e)
+        {
+            TicketInfo ticketInfo = new TicketInfo();
+            ticketInfo.Id = AppDataManager.Instance.PublishTicketId();
+            TicketEditViewModel vm = new TicketEditViewModel(ticketInfo);
+            vm.ParentTicketId = ViewModel.TicketInfo.Id;
+            TicketEditWindow window = new(vm);
+            if (window.ShowDialog() == true)
+            { 
+                ViewModel.LoadChildTickets();
+            }
         }
     }
 }

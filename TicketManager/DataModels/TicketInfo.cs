@@ -7,12 +7,16 @@ namespace TicketManager.DataModels
 {
     public class TicketInfo
     {
-        private static AppDataManager AppDataManager => AppDataManager.Instance;
-
         /// <summary>
         /// チケット番号
         /// </summary>
         public int Id { get; set; }
+
+
+        /// <summary>
+        /// 親チケットID
+        /// </summary>
+        public int? ParentTicketId { get; set; } = null;
 
         /// <summary>
         /// チケットタイトル
@@ -53,10 +57,5 @@ namespace TicketManager.DataModels
         /// 属しているマイルストーンのID
         /// </summary>
         public string MilestoneId { get; set; }　= string.Empty;
-
-        public TicketInfo() 
-        {
-            Id = AppDataManager.PublicTicketId();
-        }
     }
 }

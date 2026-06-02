@@ -60,6 +60,11 @@ namespace TicketManager
             }
 
             AppState.ChangeProject(projectInfo.Id);
+
+
+            var tickets = AppState.CurrentProject.Tickets.Values.ToList();
+            TicketTreeViewModel v = new TicketTreeViewModel(tickets);
+            TicketTreeComponent.DataContext = v;
         }
 
         private void NewProjectMenuItem_Click(object sender, RoutedEventArgs e)
@@ -86,18 +91,16 @@ namespace TicketManager
         private void NewTicketMenuItem_Click(object sender, RoutedEventArgs e)
         {
             ProjectInfo projectInfo = AppState.CurrentProject;
-            if(projectInfo == Empties.EmptyProject) { return; }
+            if (projectInfo == Empties.EmptyProject) { return; }
 
             TicketEditWindow window = new();
-            if (window.ShowDialog() == true)
-            {
-                AppDataManager.AddTickets(projectInfo.Id, window.Tickets);
-            }
+            window.ShowDialog();
         }
 
         private void ProjectSettingsMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            if(AppState.CurrentProject == Empties.EmptyProject) {
+            if (AppState.CurrentProject == Empties.EmptyProject)
+            {
                 return;
             }
             ProjectConfigWindow window = new();

@@ -1,22 +1,23 @@
-﻿<Window x:Class="TicketManager.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicketManager"
+        xmlns:Components="clr-namespace:TicketManager.Components" x:Class="TicketManager.MainWindow"
         mc:Ignorable="d"
         Title="Ticket Manager" Height="450" Width="800" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid>
-        <Label Content="{Binding ProjectInfo.Name}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding ProjectInfo.Name}" d:Content="プロジェクト名" Margin="10,25,10,0" VerticalAlignment="Top"/>
         <Menu Height="20" VerticalAlignment="Top">
             <MenuItem Header="Control">
-                <MenuItem x:Name="NewProjectMenuItem" Header="プロジェクト作成" Click="NewProjectMenuItem_Click"></MenuItem>
+                <MenuItem x:Name="NewProjectMenuItem" Header="プロジェクト作成" Click="NewProjectMenuItem_Click"/>
                 <MenuItem Header="プロジェクトを開く" ItemsSource="{Binding Projects}">
                     <MenuItem.ItemContainerStyle>
-                        <Style TargetType="MenuItem">
+                        <Style TargetType="{x:Type MenuItem}">
                             <Setter Property="Header" Value="{Binding Name}" />
                             <Setter Property="Tag" Value="{Binding}" />
-                            <EventSetter Event="Click" Handler="OpenProjectMenuItem_Click" />
+                            <EventSetter Event="MenuItem.Click" Handler="OpenProjectMenuItem_Click" />
                         </Style>
                     </MenuItem.ItemContainerStyle>
                 </MenuItem>
@@ -24,6 +25,8 @@
                 <MenuItem Header="プロジェクト設定" Click="ProjectSettingsMenuItem_Click" />
             </MenuItem>
         </Menu>
+
+        <Components:TicketTreeComponent x:Name="TicketTreeComponent" HorizontalAlignment="Left" Height="239" Margin="23,0,0,0" VerticalAlignment="Center" Width="601"/>
 
     </Grid>
 </Window>

@@ -13,10 +13,7 @@ namespace TicketManager.DataModels
         /// </summary>
         public int NextTicketId { get; set; } = 0;
 
-        /// <summary>
-        /// チケットの親子関係
-        /// </summary>
-        public Dictionary<int, TicketRelation> TicketRelations { get; set; } = [];
+        
 
         /// <summary>
         /// 前回開いていたプロジェクトID

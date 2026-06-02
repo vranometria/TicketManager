@@ -79,7 +79,7 @@ namespace TicketManager
             AppState.RaiseProjectListChanged();
         }
 
-        public int PublicTicketId()
+        public int PublishTicketId()
         {
             int id = AppData.NextTicketId;
             AppData.NextTicketId++;

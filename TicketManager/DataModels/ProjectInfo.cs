@@ -30,5 +30,51 @@ namespace TicketManager.DataModels
         /// マイルストーン
         /// </summary>
         public List<MileStoneInfo> Milestones { get; set; } = [];
+
+        /// <summary>
+        /// チケットの親子関係
+        /// </summary>
+        public Dictionary<int, TicketRelation> TicketRelations { get; set; } = [];
+
+
+        public List<int> GetChildTicketIds(int ticketId)
+        {
+            if (!TicketRelations.ContainsKey(ticketId))
+            {
+                return [];
+            }
+
+
+            TicketRelation rel = TicketRelations[ticketId];
+            return rel.ChildTicketIds;
+        }
+
+        public TicketInfo? GetTicketInfo(int ticketId)
+        {
+            if (!Tickets.ContainsKey(ticketId))
+            {
+                return null;
+            }
+            return Tickets[ticketId];
+        }
+
+
+        public void AddTicket(int? parentTicketId, TicketInfo ticketInfo)
+        {
+            Tickets[ticketInfo.Id] = ticketInfo;
+
+            if (parentTicketId != null) 
+            {
+                if (!TicketRelations.ContainsKey(parentTicketId.Value))
+                {
+                    TicketRelations[parentTicketId.Value] = new TicketRelation { ParentTicketId = parentTicketId.Value, ChildTicketIds = new List<int> { ticketInfo.Id } };
+                }
+                else
+                {
+                    TicketRelations[parentTicketId.Value].ChildTicketIds.Add(ticketInfo.Id);
+                }
+            }
+
+        }
     }
 }

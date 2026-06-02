@@ -2,6 +2,12 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Components\TicketItemComponent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Components\TicketTreeComponent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="SubWindows\ProjectConfigWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
